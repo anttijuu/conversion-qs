@@ -22,7 +22,7 @@ struct ConversionQuestion {
 		"""
 
 	static let range: ClosedRange = Int8.min+1...Int8.max-1
-
+	
 	enum Radix: CaseIterable {
 		case dec
 		case hex
@@ -58,6 +58,9 @@ struct ConversionQuestion {
 		while fromRadix == toRadix {
 			toRadix = Radix.allCases.randomElement()!
 		}
+		if fromRadix == .dec && number < 0 {
+			number = abs(number)
+		}
 		let fromValueAsString = toString(number, using: fromRadix)
 		let toValueAsSring = toString(number, using: toRadix)
 		var question: String
@@ -72,14 +75,41 @@ struct ConversionQuestion {
 		return ConversionQuestion(question: question, answer: answer)
 	}
 
-	private static func toString(_ number: Int8, using radix: Radix) -> String {
+	public static func toString(_ number: Int8, using radix: Radix) -> String {
+		var toReturn = ""
 		switch radix {
 			case .dec:
-				return String(format: "%d", number)
+				toReturn = String(format: "%d", number)
 			case .hex:
-				return String(format: "0x%x", number)
+				// var result = String(number, radix: 16, uppercase: true)
+				var result = String(format: "%X", number)
+				if result.hasPrefix("-") {
+					result.removeFirst()
+					switch result.count {
+						case 1:
+							toReturn = "0xF" + result
+						case 2:
+							toReturn = "0x" + result
+						default:
+							break
+					}
+				} else {
+					switch result.count {
+						case 1:
+							toReturn = "0x0" + result
+						case 2:
+							toReturn = "0x" + result
+						default:
+							toReturn = "0x" + String(result.suffix(2))
+							break
+					}
+				}
 			case .bin:
-				return number.binaryString
+				toReturn = number.binaryString
 		}
+//		if radix == .hex {
+//			print("Number \(number) is in \(radix) number: \(toReturn)")
+//		}
+		return toReturn
 	}
 }

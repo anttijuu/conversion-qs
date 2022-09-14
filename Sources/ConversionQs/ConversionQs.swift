@@ -38,7 +38,7 @@ extension ConversionQs {
 				} else if language == "en" {
 					print("Question: \(question.question)")
 					print("Instructions: \(question.hintEn)")
-					print("  Answer is: \(question.answer)")
+					print("Answer is: \(question.answer)")
 				} else {
 					print("Language must be either \"fi\" or \"en\"")
 				}
