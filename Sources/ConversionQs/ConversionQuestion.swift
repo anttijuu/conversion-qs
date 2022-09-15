@@ -12,18 +12,18 @@ class ConversionQuestion: Question {
 	let answer: String
 	let hint: String = """
 			<p>Käsittele arvoja etumerkillisinä (signed) kahdeksan bitin tavuina.</p>
-			<p>Kirjoita vastaukseen pyydetyn lukujärjestelmän etuliite (0x, 0b) jos se ei ole desimaali.</p>
-			<p>Käytä vastauksessa muuten vain pyydetyn lukujärjestelmän numeroita, ei välilyöntejä tai muita välimerkkejä.</p>
+			<p>Kirjoita vastaukseen pyydetyn lukujärjestelmän etuliite (0x, 0b) jos se ei ole desimaali, esimerkiksi: 0x2C tai 0b00010110.</p>
+			<p>Käytä vastauksessa muuten vain pyydetyn lukujärjestelmän numeroita, ei välilyöntejä tai muita välimerkkejä!</p>
 		"""
 	let hintEn: String = """
 			<p>Consider the values to be signed bytes, with eight bits.</p>
-			<p>Write in the answer the prefix for the radix (0x, 0b) asked, if it is not decimal.</p>
-			<p>Otherwise, use only the digits of the requested numbering system, no spaces or other punctuations.</p>
+			<p>Include in the answer the prefix for the radix (0x, 0b) asked, if it is not decimal, e.g. 0x2C or 0b00010110.</p>
+			<p>Otherwise, use only the digits of the requested numbering system, no spaces or other punctuations!</p>
 		"""
 
 	var title: String {
 		get {
-			"Muunna lukujärjestelmien välillä (convert between radixes)"
+			"Muunna lukujärjestelmien välillä (convert between radixes) \(UInt.random(in: 10000...50000))"
 		}
 	}
 
@@ -60,6 +60,5 @@ class ConversionQuestion: Question {
 		let answer = toValueAsSring
 		return ConversionQuestion(question: question, answer: answer)
 	}
-
 
 }

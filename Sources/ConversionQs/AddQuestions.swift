@@ -14,12 +14,12 @@ class AddQuestion: Question {
   <p>Käsittele arvoja etumerkittöminä (unsigned) kahdeksan bitin tavuina.</p>
   """
 	let hintEn: String = """
-  <p>Consider the values to be an eight bit unsigned byte.</p>
+  <p>Consider the values to be unsigned eight bits.</p>
   """
 
 	var title: String {
 		get {
-			"Suorita laskutehtävä (calculate numbers)"
+			"Suorita laskutehtävä (calculate numbers) \(UInt.random(in: 10000...50000))"
 		}
 	}
 
@@ -57,6 +57,5 @@ class AddQuestion: Question {
 		let answer = (numberA + numberB).toString(using: .dec)
 		return AddQuestion(question: question, answer: answer)
 	}
-
 
 }
