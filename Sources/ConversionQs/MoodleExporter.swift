@@ -30,10 +30,17 @@ struct MoodleExporter {
 					questionElement.addChild(nameNode)
 					let questionText = XMLElement(name: "questiontext")
 					questionText.addAttribute(XMLNode.attribute(withName: "format", stringValue: "html") as! XMLNode)
+
 					let hint = language == "fi" ? question.hint : question.hintEn
 					let wholeQuestion = "\(question.question) \(hint)"
-					questionText.addChild(XMLElement(name: "text", stringValue: wholeQuestion))
+					
+					let element = XMLElement(name: "text", stringValue: wholeQuestion)
+//					let element = XMLElement(kind: .element, options: [.nodeIsCDATA, .nodeNeverEscapeContents])
+//					element.name = "text"
+//					element.setStringValue(wholeQuestion, resolvingEntities: false)
+					questionText.addChild(element)
 					questionElement.addChild(questionText)
+					
 					let defaultGrade = XMLElement(name: "defaultgrade", stringValue: "2.0000000")
 					questionElement.addChild(defaultGrade)
 					let penalty = XMLElement(name: "penalty", stringValue: "0.3333333")
@@ -50,7 +57,7 @@ struct MoodleExporter {
 				}
 
 				handle.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>".data(using: .utf8)!)
-				handle.write(xml.xmlString(options: .documentTidyXML).data(using: .utf8)!)
+				handle.write(xml.xmlString(options: [.nodePrettyPrint, .nodePreserveCDATA]).data(using: .utf8)!)
 			} else {
 				fatalError("Error in creating Moodle quiz xml file, aborting")
 			}
