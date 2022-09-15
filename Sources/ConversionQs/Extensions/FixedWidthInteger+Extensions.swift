@@ -19,4 +19,5 @@ extension FixedWidthInteger {
 		}
 		return "0b" + result.reversed().joined()
 	}
+
 }

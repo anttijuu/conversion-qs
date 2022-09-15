@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  MoodleExporter.swift
 //  
 //
 //  Created by Antti Juustila on 14.9.2022.
@@ -9,9 +9,9 @@ import Foundation
 
 struct MoodleExporter {
 
-	static func write(questions: [ConversionQuestion], to file: String, using language: String) {
-		let fileURL = URL(fileURLWithPath: file)
+	static func write(questions: [Question], to file: String, using language: String) {
 		do {
+			let fileURL = URL(fileURLWithPath: file)
 			try "".data(using: .utf8)?.write(to: fileURL)
 			if let handle = try? FileHandle(forWritingTo: fileURL) {
 
@@ -25,14 +25,8 @@ struct MoodleExporter {
 					questionElement.addAttribute(XMLNode.attribute(withName: "type", stringValue: "shortanswer") as! XMLNode)
 					// Add question name, not visible to student
 					let nameNode = XMLElement(name: "name")
-					var questionName: String
-					if language == "fi" {
-						questionName = "Muunna lukujärjestelmien välillä \(counter)"
-					} else {
-						questionName = "Convert between radixes \(counter)"
-					}
 					// Add the actual question text visible to student as plain text
-					nameNode.addChild(XMLElement(name: "text", stringValue: questionName))
+					nameNode.addChild(XMLElement(name: "text", stringValue: question.title))
 					questionElement.addChild(nameNode)
 					let questionText = XMLElement(name: "questiontext")
 					questionText.addAttribute(XMLNode.attribute(withName: "format", stringValue: "html") as! XMLNode)
