@@ -1,5 +1,5 @@
 import XCTest
-@testable import ConversionQs
+@testable import QuestionGenerator
 
 struct SignedTestNumber {
 	let value: Int8

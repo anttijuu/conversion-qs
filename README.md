@@ -1,4 +1,4 @@
-# ConversionQs
+# QuestionGenerator
 
 This command line tool generates random numbering system (radix) questions for quizzes or exams. The question languages supported are Finnish and English.
 
@@ -37,7 +37,7 @@ Run the tool from Xcode, first editing the Product scheme having suitable argume
 Or run the tool from command line, with suitable argument values, e.g.:
 
 ```console
-./.build/release/ConversionQs test.xml 20 en --verbose
+./.build/release/QuestionGenerator test.xml 20 en --verbose
 ```
 
 First argument is required, the rest being optional with default values:
@@ -50,7 +50,7 @@ First argument is required, the rest being optional with default values:
 Run the command with `-h`flag to see the instructions:
 
 ```console
-> ./.build/release/ConversionQs -h
+> ./.build/release/QuestionGenerator -h
 OVERVIEW: A utility to generate both number conversion and basic math questions for Moodle quizzes.
 
 USAGE: question-generator <output-file> [<number-of-questions>] [<language>] [--verbose]
