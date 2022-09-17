@@ -66,6 +66,14 @@ OPTIONS:
   -h, --help              Show help information.
 ```
 
+
+## Contributing
+
+If you find any issues or places for improvement, you may either:
+
+* Report an issue using GitHub issues for this project, or
+* Fork the repository, clone it, create a branch for your fix or enhancement, push it to your fork and then create a pull request to this repository.
+
 ## License
 
 MIT License. See the LICENSE file for details.
