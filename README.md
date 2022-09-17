@@ -72,7 +72,7 @@ OPTIONS:
 If you find any issues or places for improvement, you may either:
 
 * Report an issue using GitHub issues for this project, or
-* Fork the repository, clone it, create a branch for your fix or enhancement, push it to your fork and then create a pull request to this repository.
+* Fork the repository, clone it, create a branch for your fix or enhancement, push it to your fork and then create a pull request to this repository. Consider adding any suitable unit tests in the Tests folder.
 
 ## License
 
