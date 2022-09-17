@@ -32,7 +32,7 @@ Or open the `Package.swift` file from Xcode.
 
 ## Running
 
-Run the tool from Xcode, first editing the Product scheme having suitable arguments the tool requires. 
+Run the tool from Xcode, first editing the Product scheme having suitable arguments the tool requires (see below). 
  
 Or run the tool from command line, with suitable argument values, e.g.:
 
@@ -42,7 +42,7 @@ Or run the tool from command line, with suitable argument values, e.g.:
 
 First argument is required, the rest being optional with default values:
 
-1. The output XML file name.
+1. The output XML file name. If the file exists, it is overwritten.
 2. Number of each question type to generate. Value 20 generates 20 conversion and 20 addition questions.
 3. Language of the questions, "fi" for Finnish, "en" for English.
 4. --verbose flag prints progress information. If not provided the tool prints nothing when all goes OK. 
@@ -57,15 +57,14 @@ USAGE: question-generator <output-file> [<number-of-questions>] [<language>] [--
 
 ARGUMENTS:
   <output-file>           Output file name.
-  <number-of-questions>   Number of questions to generate for each question type (default is 10) (default: 10)
-  <language>              Language to generate, either fi or en (defaults to fi). (default: fi)
+  <number-of-questions>   Number of questions to generate for each question type (default: 10)
+  <language>              Language to generate, either fi or en. (default: fi)
 
 OPTIONS:
   --verbose               Include extra information in the console output.
   --version               Show the version.
   -h, --help              Show help information.
 ```
-
 
 ## Contributing
 
