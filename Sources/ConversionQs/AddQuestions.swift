@@ -7,16 +7,23 @@
 
 import Foundation
 
+
+/// Add question type generates simple arithmetic add questions using unsigned byte values.
 class AddQuestion: Question {
+	/// The generated question text.
 	let question: String
+	/// The answer to the question.
 	let answer: String
+	/// Hints or instructions on how to answer the question (Finnish).
 	let hint: String = """
   <p>Käsittele arvoja etumerkittöminä (unsigned) kahdeksan bitin tavuina.</p>
   """
+	/// Hints or instructions on how to answer the question (English).
 	let hintEn: String = """
   <p>Consider the values to be unsigned eight bits.</p>
   """
 
+	/// Title of the question, not visible to students in Moodle, only to teachers.
 	var title: String {
 		get {
 			"Suorita laskutehtävä (calculate numbers) \(UInt.random(in: 10000...50000))"
@@ -28,8 +35,12 @@ class AddQuestion: Question {
 		self.answer = answer
 	}
 
+	/// The range of values to use when generating the question.
 	static let range: ClosedRange = UInt8.min...UInt8.max/2 - 1
 
+	/// Generates one random question.
+	/// - Parameter language: The language to use in generating the question.
+	/// - Returns: Returns a new question object.
 	static func generate(using language: String) -> AddQuestion {
 		var numberA: UInt8 = range.randomElement()!
 		while numberA == 0 {

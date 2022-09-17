@@ -30,15 +30,4 @@ final class ConversionQsTests: XCTestCase {
 		}
 	}
 
-	func testAdditions() throws {
-		var testArray = [UnsignedTestNumber]()
-		testArray.append(UnsignedTestNumber(valueA: 1, valueB: 2, answer: "3"))
-		testArray.append(UnsignedTestNumber(valueA: 1, valueB: 9, answer: "10"))
-		testArray.append(UnsignedTestNumber(valueA: 0x2A, valueB: 0b00000001, answer: "43"))
-		testArray.append(UnsignedTestNumber(valueA: 0x0A, valueB: 0b00101010, answer: "84"))
-
-		for testNumber in testArray {
-			// XCTAssertEqual(testNumber.answer, )
-		}
-	}
 }

@@ -8,6 +8,7 @@
 import Foundation
 
 extension FixedWidthInteger {
+	/// Provides a binary representation of the value in format `0b10101010`.
 	var binaryString: String {
 		var result: [String] = []
 		for i in 0..<(Self.bitWidth / 8) {

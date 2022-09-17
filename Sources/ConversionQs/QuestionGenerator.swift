@@ -1,16 +1,17 @@
 import ArgumentParser
 
 @main
+/// A command line tool to generate simple, random radix conversion and arithmetic quizzes.
 struct QuestionGenerator: ParsableCommand {
+
+	@Argument(help: "Output file name.")
+	var outputFile: String
 
 	@Argument(help: "Number of questions to generate for each question type (default is 10)")
 	var numberOfQuestions: Int = 10
 
 	@Argument(help: "Language to generate, either fi or en (defaults to fi).")
 	var language: String = "fi"
-
-	@Argument(help: "Output file name.")
-	var outputFile: String
 
 	@Flag(help: "Include extra information in the console output.")
 	var verbose = false

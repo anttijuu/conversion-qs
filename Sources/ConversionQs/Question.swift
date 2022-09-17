@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// The interface to different question types.
 protocol Question {
 	var title: String { get }
 	var question: String { get }

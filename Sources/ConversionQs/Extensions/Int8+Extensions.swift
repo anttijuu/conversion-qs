@@ -8,6 +8,11 @@
 import Foundation
 
 extension Int8 {
+	/// Provides a string representation of the eight bit signed integer value using the provided radix.
+	/// Hexadecimal values are prefixed with `0x`, binary values with `0b`. The length of the string
+	/// always adheres to eight bits. For example, decimal value 4 in hex is `0x04` and binary: `0b00000100`.
+	/// - Parameter radix: Radix to use.
+	/// - Returns: The value as string, using given radix.
 	func toString(using radix: Radix) -> String {
 		var toReturn = ""
 		switch radix {
@@ -45,6 +50,11 @@ extension Int8 {
 }
 
 extension UInt8 {
+	/// Provides a string representation of the eight bit unsigned integer value using the provided radix.
+	/// Hexadecimal values are prefixed with `0x`, binary values with `0b`. The length of the string
+	/// always adheres to eight bits. For example, decimal value 4 in hex is `0x04` and binary: `0b00000100`.
+	/// - Parameter radix: Radix to use.
+	/// - Returns: The value as string, using given radix.
 	func toString(using radix: Radix) -> String {
 		var toReturn = ""
 		switch radix {

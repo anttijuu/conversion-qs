@@ -7,17 +7,26 @@
 
 import Foundation
 
-struct MoodleExporter {
+/// Exports an array of questions to a XML file using a specified language.
+enum MoodleExporter {
 
+	/// This static method exports an array of different types of questions to a XML file using the specified language.
+	/// The XML file format is the Moodle quiz XML format.
+	/// 
+	/// - Parameters:
+	///   - questions: An array of questions.
+	///   - file: The file name to store the questions.
+	///   - language: One of the supported languages, currently "fi" or "en".
 	static func write(questions: [Question], to file: String, using language: String) {
 		do {
 			let fileURL = URL(fileURLWithPath: file)
+			// File must exist before using file handle, so write an empty string to the file.
+			try "".write(to: fileURL, atomically: true, encoding: .utf8)
 			let handle = try FileHandle(forWritingTo: fileURL)
 
 			let root = XMLElement(name: "quiz")
 			let xml = XMLDocument(rootElement: root)
 
-			var counter: Int = 1
 			for question in questions {
 				// Create one question
 				let questionElement = XMLElement(name: "question")
@@ -34,9 +43,11 @@ struct MoodleExporter {
 				let wholeQuestion = "\(question.question) \(hint)"
 
 				let element = XMLElement(name: "text", stringValue: wholeQuestion)
-				//					let element = XMLElement(kind: .element, options: [.nodeIsCDATA, .nodeNeverEscapeContents])
-				//					element.name = "text"
-				//					element.setStringValue(wholeQuestion, resolvingEntities: false)
+				// Trying to get the HTML formatted question inside a CDATA element so that tags would
+				// not be escaped, but could not get this to work.
+				//	let element = XMLElement(kind: .element, options: [.nodeIsCDATA, .nodeNeverEscapeContents])
+				//	element.name = "text"
+				//	element.setStringValue(wholeQuestion, resolvingEntities: false)
 				questionText.addChild(element)
 				questionElement.addChild(questionText)
 
@@ -52,7 +63,6 @@ struct MoodleExporter {
 				questionElement.addChild(answer)
 				// Add the question to the set of questions
 				root.addChild(questionElement)
-				counter += 1
 			}
 
 			handle.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>".data(using: .utf8)!)
