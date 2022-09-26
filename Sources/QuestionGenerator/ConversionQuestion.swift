@@ -17,12 +17,14 @@ class ConversionQuestion: Question {
 	let hint: String = """
 			<p>Käsittele arvoja etumerkillisinä (signed) kahdeksan bitin tavuina.</p>
 			<p>Kirjoita vastaukseen pyydetyn lukujärjestelmän etuliite (0x, 0b) jos se ei ole desimaali, esimerkiksi: 0x2C tai 0b00010110.</p>
+			<p>Binääriarvoja syöttäessäsi, vastauksessa pitää olla kahdeksan bittiä eli lisää etunollat, esimerkiksi: 0b00010110.</p>
 			<p>Käytä vastauksessa muuten vain pyydetyn lukujärjestelmän numeroita, ei välilyöntejä tai muita välimerkkejä!</p>
 		"""
 	/// English instructions or hints on how to answer the question.
 	let hintEn: String = """
 			<p>Consider the values to be signed bytes, with eight bits.</p>
 			<p>Include in the answer the prefix for the radix (0x, 0b) asked, if it is not decimal, e.g. 0x2C or 0b00010110.</p>
+			<p>When entering binary values, the answer must include eight bits, so add the preceding zeroes, for example: 0b00010110.</p>
 			<p>Otherwise, use only the digits of the requested numbering system, no spaces or other punctuations!</p>
 		"""
 
