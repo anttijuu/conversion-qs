@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "QuestionGenerator",
+	 platforms: [.macOS(.v10_15)],
     dependencies: [
 		.package(url: "https://github.com/apple/swift-argument-parser.git", .upToNextMajor(from: "1.0.0")),
     ],
