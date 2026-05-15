@@ -54,17 +54,18 @@ extension QuestionGenerator {
 			print("---Generated questions below---")
 			for question in questions {
 				if language == "fi" {
-					print(" ---\nAihe: \(question.title)")
+					print("Aihe: \(question.title)")
 					print("Kysymys: \(question.question)")
 					print("Ohjeet:\n - \(question.hints.joined(separator: "\n - "))")
 					print("!! Oikea vastaus: \(question.answer)")
 					
 				} else if language == "en" {
-					print(" ---\nSubject: \(question.titleEn)")
+					print("Subject: \(question.titleEn)")
 					print("Question: \(question.question)")
 					print("Instructions:\n - \(question.hintsEn.joined(separator: "\n - "))")
 					print("!! Correct answer is: \(question.answer)")
 				}
+				print(" --- ")
 			}
 		}
 		if (output == "moodle") {
@@ -72,7 +73,7 @@ extension QuestionGenerator {
 		} else if output == "html" {
 			HTMLExporter.write(questions: questions, to: outputFile, using: language)
 		}
-		print("-- Done -- ")
+		print("***** Done *****")
 	}
 
 }

@@ -22,7 +22,7 @@ class AddQuestion: Question {
 	/// Hints or instructions on how to answer the question (English).
 	let hintsEn: [String] = [
 		"Consider the values to be unsigned eight bits.",
-		"In your answer use only numbers, no characteres, punctiations, spaces or other symbols"
+		"In your answer use only numbers, no characters, punctuations, spaces or other symbols"
 	]
 	
 	/// Title of the question, not visible to students in Moodle, only to teachers.
@@ -69,7 +69,7 @@ class AddQuestion: Question {
 		if language == "fi" {
 			question = String(format: "Anna seuraavan laskuoperaation tulos kymmenlukujärjestelmän numerona: \(valueOfAAsString) + \(valueOfBAsString)")
 		} else if language == "en" {
-			question = String(format: "What is the result of the calculation as a decimal system number: \(valueOfAAsString) + \(valueOfBAsString)")
+			question = String(format: "What is the result of this calculation as a decimal system number: \(valueOfAAsString) + \(valueOfBAsString)")
 		} else {
 			question = "ERROR"
 		}
