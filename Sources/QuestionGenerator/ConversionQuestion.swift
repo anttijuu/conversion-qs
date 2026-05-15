@@ -16,7 +16,7 @@ class ConversionQuestion: Question {
 	/// Finnish instructions or hints on how to answer the question.
 	var hints: [String] = [
 		"Käsittele arvoja etumerkillisinä (signed) kahdeksan bitin tavuina.",
-		"Käytä vastauksessa vain vastauksessa odotetun lukujärjestelmän numeroita, ei välilyöntejä tai muita välimerkkejä!"
+		"Käytä vain vastauksessa odotetun lukujärjestelmän numeroita, ei välilyöntejä tai muita välimerkkejä!"
 	]
 	/// English instructions or hints on how to answer the question.
 	var hintsEn: [String] = [
