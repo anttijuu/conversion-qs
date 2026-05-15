@@ -42,7 +42,7 @@ Run the tool from Xcode, first editing the Product scheme having suitable argume
 Or run the tool from command line, with suitable argument values, e.g.:
 
 ```console
-./.build/release/QuestionGenerator test.xml 20 en html --verbose
+./.build/release/QuestionGenerator test.html 20 fi html
 ```
 
 First argument is required, the rest being optional with default values:
@@ -73,7 +73,7 @@ OPTIONS:
   -h, --help              Show help information.
 ```
 
-If you wish to get plain text output, select either moodle or html output and use the `--verbose` flag:
+If you wish to get plain text output, select use moodle or html output format and use the `--verbose` flag:
 
 ```console
 > .build/debug/QuestionGenerator test.html 1 en html --verbose
@@ -98,7 +98,7 @@ Instructions:
 ```
 Then you can copy the question text from the console (or redirect it into a file or clipboard). 
 
-In all output formats, take care *not* to include the correct answer in the question text...
+In all output formats, take care *not* to include the correct answer in the question text for the students...
 
 
 ## Contributing
