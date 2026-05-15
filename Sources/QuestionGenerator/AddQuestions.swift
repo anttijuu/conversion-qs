@@ -31,13 +31,13 @@ class AddQuestion: Question {
 			"Suorita laskutehtävä (id: \(UInt.random(in: 10000...50000)))"
 		}
 	}
-
+	
 	var titleEn: String {
 		get {
 			"Calculate the numbers (id: \(UInt.random(in: 10000...50000)))"
 		}
 	}
-
+	
 	init(question: String, answer: String) {
 		self.question = question
 		self.answer = answer
@@ -49,7 +49,7 @@ class AddQuestion: Question {
 	/// Generates one random question.
 	/// - Parameter language: The language to use in generating the question.
 	/// - Returns: Returns a new question object.
-	static func generate(using language: String) -> AddQuestion {
+	static func generate(using language: Language) -> AddQuestion {
 		var numberA: UInt8 = range.randomElement()!
 		while numberA == 0 {
 			numberA = range.randomElement()!
@@ -66,12 +66,11 @@ class AddQuestion: Question {
 		let valueOfAAsString = numberA.toString(using: radixOfA)
 		let valueOfBAsString = numberB.toString(using: radixOfB)
 		var question: String
-		if language == "fi" {
+		switch language {
+		case .fi:
 			question = String(format: "Anna seuraavan laskuoperaation tulos kymmenlukujärjestelmän numerona: \(valueOfAAsString) + \(valueOfBAsString)")
-		} else if language == "en" {
+		case .en:
 			question = String(format: "What is the result of this calculation as a decimal system number: \(valueOfAAsString) + \(valueOfBAsString)")
-		} else {
-			question = "ERROR"
 		}
 		let answer = (numberA + numberB).toString(using: .dec)
 		return AddQuestion(question: question, answer: answer)

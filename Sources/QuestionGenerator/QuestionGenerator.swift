@@ -41,13 +41,14 @@ extension QuestionGenerator {
 			print("Must generate one or more questions")
 			return
 		}
+		let selectedLanguage = if language == "fi" { Language.fi } else if language == "en" { Language.en } else { Language.fi }
 		var questions = [any Question]()
 		for _ in 1...numberOfQuestions {
-			let question = ConversionQuestion.generate(using: language)
+			let question = ConversionQuestion.generate(using: selectedLanguage)
 			questions.append(question)
 		}
 		for _ in 1...numberOfQuestions {
-			let question = AddQuestion.generate(using: language)
+			let question = AddQuestion.generate(using: selectedLanguage)
 			questions.append(question)
 		}
 		if verbose {
@@ -69,9 +70,9 @@ extension QuestionGenerator {
 			}
 		}
 		if (output == "moodle") {
-			MoodleExporter.write(questions: questions, to: outputFile, using: language)
+			MoodleExporter.write(questions: questions, to: outputFile, using: selectedLanguage)
 		} else if output == "html" {
-			HTMLExporter.write(questions: questions, to: outputFile, using: language)
+			HTMLExporter.write(questions: questions, to: outputFile, using: selectedLanguage)
 		}
 		print("***** Done *****")
 	}

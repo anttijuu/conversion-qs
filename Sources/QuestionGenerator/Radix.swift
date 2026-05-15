@@ -12,22 +12,20 @@ enum Radix: CaseIterable {
 	case hex
 	case bin
 
-	func asString(using language: String) -> String {
+	func asString(using language: Language) -> String {
 		switch (self, language) {
-			case (.dec, "fi"):
+		case (.dec, .fi):
 				return "desimaali"
-			case (.hex, "fi"):
+		case (.hex, .fi):
 				return "heksadesimaali"
-			case (.bin, "fi"):
+		case (.bin, .fi):
 				return "binääri"
-			case (.dec, "en"):
+		case (.dec, .en):
 				return "decimal"
-			case (.hex, "en"):
+		case (.hex, .en):
 				return "hexadecimal"
-			case (.bin, "en"):
+		case (.bin, .en):
 				return "binary"
-			default:
-				return "Error"
 		}
 	}
 }

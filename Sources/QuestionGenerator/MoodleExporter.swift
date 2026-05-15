@@ -17,7 +17,7 @@ enum MoodleExporter {
 	///   - questions: An array of questions.
 	///   - file: The file name to store the questions.
 	///   - language: One of the supported languages, currently "fi" or "en".
-	static func write(questions: [Question], to file: String, using language: String) {
+	static func write(questions: [Question], to file: String, using language: Language) {
 		do {
 			let fileURL = URL(fileURLWithPath: file)
 			// File must exist before using file handle, so write an empty string to the file.
@@ -33,14 +33,25 @@ enum MoodleExporter {
 				questionElement.addAttribute(XMLNode.attribute(withName: "type", stringValue: "shortanswer") as! XMLNode)
 				// Add question name, not visible to student
 				let nameNode = XMLElement(name: "name")
+				
 				// Add the actual question text visible to student as plain text
-				let title = language == "fi" ? question.title : question.titleEn
+				let title = switch language {
+				case .fi: question.title
+				case .en: question.titleEn
+				}
+				
 				nameNode.addChild(XMLElement(name: "text", stringValue: title))
 				questionElement.addChild(nameNode)
 				let questionText = XMLElement(name: "questiontext")
 				questionText.addAttribute(XMLNode.attribute(withName: "format", stringValue: "html") as! XMLNode)
 
-				let hints = language == "fi" ? question.hints : question.hintsEn
+				let hints = switch language {
+				case .fi:
+					question.hints
+				case .en:
+					question.hintsEn
+				}
+				
 				var wholeQuestion = "<p>\(question.question)</p><ul>\n"
 				for hint in hints {
 					wholeQuestion.append("<li>\(hint)</li>\n")

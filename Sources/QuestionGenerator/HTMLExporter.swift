@@ -17,7 +17,7 @@ enum HTMLExporter {
 	///   - questions: An array of questions.
 	///   - file: The file name to store the questions.
 	///   - language: One of the supported languages, currently "fi" or "en".
-	static func write(questions: [Question], to file: String, using language: String) {
+	static func write(questions: [Question], to file: String, using language: Language) {
 		
 		do {
 			let fileURL = URL(fileURLWithPath: file)
@@ -30,13 +30,25 @@ enum HTMLExporter {
 			let body = XMLElement(name: "body")
 			
 			for question in questions {
-				let title = language == "fi" ? question.title : question.titleEn
+				
+				let title = switch language {
+				case .fi:
+					question.title
+				case .en:
+					question.titleEn
+				}
+								
 				let questionTitleElement = XMLElement(name: "h3", stringValue: title)
 				body.addChild(questionTitleElement)
 				let questionElement = XMLElement(name: "p", stringValue: question.question)
 				body.addChild(questionElement)
 				
-				let hints = language == "fi" ? question.hints : question.hintsEn
+				let hints = switch language {
+				case .fi:
+					question.hints
+				case .en:
+					question.hintsEn
+				}
 				let hintsNode = XMLElement(name: "ul")
 				for hint in hints {
 					let hintElement = XMLElement(name: "li", stringValue: hint)
