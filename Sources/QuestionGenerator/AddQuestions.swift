@@ -15,9 +15,15 @@ class AddQuestion: Question {
 	/// The answer to the question.
 	let answer: String
 	/// Hints or instructions on how to answer the question (Finnish).
-	let hints: [String] = ["Käsittele arvoja etumerkittöminä (unsigned) kahdeksan bitin tavuina."]
+	let hints: [String] = [
+		"Käsittele arvoja etumerkittöminä (unsigned) kahdeksan bitin tavuina.",
+		"Anna vastauksena vain numeroita, ei kirjainmerkkejä, välimerkkejä, välilyöntejä tai muuta"
+	]
 	/// Hints or instructions on how to answer the question (English).
-	let hintsEn: [String] = ["Consider the values to be unsigned eight bits."]
+	let hintsEn: [String] = [
+		"Consider the values to be unsigned eight bits.",
+		"In your answer use only numbers, no characteres, punctiations, spaces or other symbols"
+	]
 	
 	/// Title of the question, not visible to students in Moodle, only to teachers.
 	var title: String {
@@ -28,7 +34,7 @@ class AddQuestion: Question {
 
 	var titleEn: String {
 		get {
-			"calculate numbers (id: \(UInt.random(in: 10000...50000)))"
+			"Calculate the numbers (id: \(UInt.random(in: 10000...50000)))"
 		}
 	}
 
@@ -61,9 +67,9 @@ class AddQuestion: Question {
 		let valueOfBAsString = numberB.toString(using: radixOfB)
 		var question: String
 		if language == "fi" {
-			question = String(format: "Anna seuraavan laskuoperaation tulos desimaalinumerona: \(valueOfAAsString) + \(valueOfBAsString)")
+			question = String(format: "Anna seuraavan laskuoperaation tulos kymmenlukujärjestelmän numerona: \(valueOfAAsString) + \(valueOfBAsString)")
 		} else if language == "en" {
-			question = String(format: "What is the result of the calculation as decimal number: \(valueOfAAsString) + \(valueOfBAsString)")
+			question = String(format: "What is the result of the calculation as a decimal system number: \(valueOfAAsString) + \(valueOfBAsString)")
 		} else {
 			question = "ERROR"
 		}

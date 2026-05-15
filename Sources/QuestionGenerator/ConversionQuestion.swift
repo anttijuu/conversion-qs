@@ -16,16 +16,16 @@ class ConversionQuestion: Question {
 	/// Finnish instructions or hints on how to answer the question.
 	let hints: [String] = [
 		"Käsittele arvoja etumerkillisinä (signed) kahdeksan bitin tavuina.",
-		"Kirjoita vastaukseen pyydetyn lukujärjestelmän etuliite (0x, 0b) jos se ei ole desimaali, esimerkiksi: 0x2C tai 0b00010110.",
+		"Jos vastauksen luujärjestelmä ei ole desimaali, kirjoita vastaukseen pyydetyn lukujärjestelmän etuliite, esimerkiksi: 0x2C tai 0b00010110 (eli 0x tai 0b).",
 		"Binääriarvoja syöttäessäsi, vastauksessa pitää olla kahdeksan bittiä eli lisää etunollat, esimerkiksi: 0b00010110.",
-		"Käytä vastauksessa muuten vain pyydetyn lukujärjestelmän numeroita, ei välilyöntejä tai muita välimerkkejä!"
+		"Käytä vastauksessa muuten vain vastauksen lukujärjestelmän numeroita, ei välilyöntejä tai muita välimerkkejä!"
 	]
 	/// English instructions or hints on how to answer the question.
 	let hintsEn: [String] = [
-		"Consider the values to be signed bytes, with eight bits.",
-		"Include in the answer the prefix for the radix (0x, 0b) asked, if it is not decimal, e.g. 0x2C or 0b00010110.",
+		"Consider the values to be signed eight bit bytes.",
+		"If the answer is not decimal, prefix the answer for the radix (0x, 0b) asked, e.g. 0x2C or 0b00010110.",
 		"When entering binary values, the answer must include eight bits, so add the preceding zeroes, for example: 0b00010110.",
-		"Otherwise, use only the digits of the requested numbering system, no spaces or other punctuations!"
+		"Otherwise, use only the digits of the requested radix, no spaces or other punctuations!"
 	]
 	
 	/// The title of the question. Visible only to Moodle teachers, not students.

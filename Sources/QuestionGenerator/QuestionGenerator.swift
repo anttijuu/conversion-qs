@@ -21,7 +21,7 @@ struct QuestionGenerator: ParsableCommand {
 
 	static var configuration = CommandConfiguration(
 		abstract: "A utility to generate both number conversion and basic math questions for Moodle quizzes.",
-		version: "0.0.1"
+		version: "0.1.0"
 	)
 
 }
@@ -37,40 +37,33 @@ extension QuestionGenerator {
 			print("language must be either \"fi\" or \"en\"")
 			return
 		}
+		guard numberOfQuestions > 0 else {
+			print("Must generate one or more questions")
+			return
+		}
 		var questions = [any Question]()
 		for _ in 1...numberOfQuestions {
 			let question = ConversionQuestion.generate(using: language)
 			questions.append(question)
-			if verbose {
-				print("---------------------------------")
-				if language == "fi" {
-					print("Kysymys: \(question.question)")
-					print("Ohje: \(question.hints)")
-					print("  Vastaus: \(question.answer)")
-
-				} else if language == "en" {
-					print("Question: \(question.question)")
-					print("Instructions: \(question.hintsEn)")
-					print("Answer is: \(question.answer)")
-				} else {
-					print("Language must be either \"fi\" or \"en\"")
-				}
-			}
 		}
 		for _ in 1...numberOfQuestions {
 			let question = AddQuestion.generate(using: language)
 			questions.append(question)
-			if verbose {
-				print("---------------------------------")
+		}
+		if verbose {
+			print("---Generated questions below---")
+			for question in questions {
 				if language == "fi" {
+					print(" ---\nAihe: \(question.title)")
 					print("Kysymys: \(question.question)")
-					print("Ohje: \(question.hints)")
-					print("  Vastaus: \(question.answer)")
-
+					print("Ohjeet:\n - \(question.hints.joined(separator: "\n - "))")
+					print("!! Oikea vastaus: \(question.answer)")
+					
 				} else if language == "en" {
+					print(" ---\nSubject: \(question.title)")
 					print("Question: \(question.question)")
-					print("Instructions: \(question.hintsEn)")
-					print("Answer is: \(question.answer)")
+					print("Instructions:\n - \(question.hintsEn.joined(separator: "\n - "))")
+					print("!! Correct answer is: \(question.answer)")
 				}
 			}
 		}
@@ -79,6 +72,7 @@ extension QuestionGenerator {
 		} else if output == "html" {
 			HTMLExporter.write(questions: questions, to: outputFile, using: language)
 		}
+		print("-- Done -- ")
 	}
 
 }
