@@ -73,7 +73,7 @@ OPTIONS:
   -h, --help              Show help information.
 ```
 
-If you wish to get plain text output, select use moodle or html output format and use the `--verbose` flag:
+If you wish to get plain text output, use either moodle or html output format and use the `--verbose` flag:
 
 ```console
 > .build/debug/QuestionGenerator test.html 1 en html --verbose
