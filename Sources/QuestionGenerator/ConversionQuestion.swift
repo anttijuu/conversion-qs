@@ -16,7 +16,7 @@ class ConversionQuestion: Question {
 	/// Finnish instructions or hints on how to answer the question.
 	let hints: [String] = [
 		"Käsittele arvoja etumerkillisinä (signed) kahdeksan bitin tavuina.",
-		"Jos vastauksen luujärjestelmä ei ole desimaali, kirjoita vastaukseen pyydetyn lukujärjestelmän etuliite, esimerkiksi: 0x2C tai 0b00010110 (eli 0x tai 0b).",
+		"Jos vastauksen lukujärjestelmä ei ole desimaali, kirjoita vastaukseen pyydetyn lukujärjestelmän etuliite, esimerkiksi: 0x2C tai 0b00010110 (eli 0x tai 0b).",
 		"Binääriarvoja syöttäessäsi, vastauksessa pitää olla kahdeksan bittiä eli lisää etunollat, esimerkiksi: 0b00010110.",
 		"Käytä vastauksessa muuten vain vastauksen lukujärjestelmän numeroita, ei välilyöntejä tai muita välimerkkejä!"
 	]
