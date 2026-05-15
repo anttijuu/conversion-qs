@@ -21,7 +21,8 @@ Generated questions with correct answers and default grading are saved into eith
 * a Moodle quiz XML file. The file can then be imported to Moodle question bank.
 * as a HTML document, from where to copy the HTML formatted questions to a web based exam system. 
 
-A simple sample HTML output file is included in [test.html](test.html).
+A small sample HTML output file is included in [test.html](test.html). Each question begins from it's own `<h3>` level
+header.
 
 ## Building
 
@@ -79,21 +80,21 @@ If you wish to get plain text output, use either moodle or html output format an
 > .build/debug/QuestionGenerator test.html 1 en html --verbose
 ---Generated questions below---
  ---
-Subject: Muunna lukujärjestelmien (radix) välillä (id: 42079)
-Question: Convert the value 67 to radix: binary.
+Subject: Convert between radixes (id: 37112)
+Question: Convert the value 72 to radix: hexadecimal.
 Instructions:
  - Consider the values to be signed eight bit bytes.
  - If the answer is not decimal, prefix the answer for the radix (0x, 0b) asked, e.g. 0x2C or 0b00010110.
  - When entering binary values, the answer must include eight bits, so add the preceding zeroes, for example: 0b00010110.
  - Otherwise, use only the digits of the requested radix, no spaces or other punctuations!
-!! Correct answer is: 0b01000011
+!! Correct answer is: 0x48
  ---
-Subject: Suorita laskutehtävä (id: 17936)
-Question: What is the result of the calculation as a decimal system number: 0b00110110 + 0x30
+Subject: Calculate the numbers (id: 39215)
+Question: What is the result of the calculation as a decimal system number: 19 + 0x09
 Instructions:
  - Consider the values to be unsigned eight bits.
  - In your answer use only numbers, no characteres, punctiations, spaces or other symbols
-!! Correct answer is: 102
+!! Correct answer is: 28
 -- Done -- 
 ```
 Then you can copy the question text from the console (or redirect it into a file or clipboard). 

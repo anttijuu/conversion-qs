@@ -60,7 +60,7 @@ extension QuestionGenerator {
 					print("!! Oikea vastaus: \(question.answer)")
 					
 				} else if language == "en" {
-					print(" ---\nSubject: \(question.title)")
+					print(" ---\nSubject: \(question.titleEn)")
 					print("Question: \(question.question)")
 					print("Instructions:\n - \(question.hintsEn.joined(separator: "\n - "))")
 					print("!! Correct answer is: \(question.answer)")
