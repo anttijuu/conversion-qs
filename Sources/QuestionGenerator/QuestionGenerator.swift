@@ -13,6 +13,9 @@ struct QuestionGenerator: ParsableCommand {
 	@Argument(help: "Language to generate, either fi or en.")
 	var language: String = "fi"
 
+	@Argument(help: "Output format, either moodle or html.")
+	var output: String = "html"
+
 	@Flag(help: "Include extra information in the console output.")
 	var verbose = false
 
@@ -26,6 +29,14 @@ struct QuestionGenerator: ParsableCommand {
 extension QuestionGenerator {
 
 	mutating func run() {
+		guard output == "moodle" || output == "html" else {
+			print("output must be either \"moodle\" or \"html\"")
+			return
+		}
+		guard language == "fi" || language == "en" else {
+			print("language must be either \"fi\" or \"en\"")
+			return
+		}
 		var questions = [any Question]()
 		for _ in 1...numberOfQuestions {
 			let question = ConversionQuestion.generate(using: language)
@@ -34,12 +45,12 @@ extension QuestionGenerator {
 				print("---------------------------------")
 				if language == "fi" {
 					print("Kysymys: \(question.question)")
-					print("Ohje: \(question.hint)")
+					print("Ohje: \(question.hints)")
 					print("  Vastaus: \(question.answer)")
 
 				} else if language == "en" {
 					print("Question: \(question.question)")
-					print("Instructions: \(question.hintEn)")
+					print("Instructions: \(question.hintsEn)")
 					print("Answer is: \(question.answer)")
 				} else {
 					print("Language must be either \"fi\" or \"en\"")
@@ -53,19 +64,21 @@ extension QuestionGenerator {
 				print("---------------------------------")
 				if language == "fi" {
 					print("Kysymys: \(question.question)")
-					print("Ohje: \(question.hint)")
+					print("Ohje: \(question.hints)")
 					print("  Vastaus: \(question.answer)")
 
 				} else if language == "en" {
 					print("Question: \(question.question)")
-					print("Instructions: \(question.hintEn)")
+					print("Instructions: \(question.hintsEn)")
 					print("Answer is: \(question.answer)")
-				} else {
-					print("Language must be either \"fi\" or \"en\"")
 				}
 			}
 		}
-		MoodleExporter.write(questions: questions, to: outputFile, using: language)
+		if (output == "moodle") {
+			MoodleExporter.write(questions: questions, to: outputFile, using: language)
+		} else if output == "html" {
+			HTMLExporter.write(questions: questions, to: outputFile, using: language)
+		}
 	}
 
 }

@@ -16,7 +16,10 @@ Or simple arithmetic add operations:
 
 Both question types use eight bit integer values. Add questions use only positive (unsigned) eight bit values.
 
-Generated questions with correct answers and default grading are saved into a Moodle quiz XML file. The file can then be imported to Moodle question bank.
+Generated questions with correct answers and default grading are saved into either
+
+* a Moodle quiz XML file. The file can then be imported to Moodle question bank.
+* as a HTML document, from where to copy the HTML formatted questions to a web based exam system. 
 
 ## Building
 
@@ -37,7 +40,7 @@ Run the tool from Xcode, first editing the Product scheme having suitable argume
 Or run the tool from command line, with suitable argument values, e.g.:
 
 ```console
-./.build/release/QuestionGenerator test.xml 20 en --verbose
+./.build/release/QuestionGenerator test.xml 20 en html --verbose
 ```
 
 First argument is required, the rest being optional with default values:
@@ -45,6 +48,7 @@ First argument is required, the rest being optional with default values:
 1. The output XML file name. If the file exists, it is overwritten.
 2. Number of each question type to generate. Value 20 generates 20 conversion and 20 addition questions.
 3. Language of the questions, "fi" for Finnish, "en" for English.
+4. Format of the output, either "html" or "moodle" for Moodle XML format.
 4. --verbose flag prints progress information. If not provided the tool prints nothing when all goes OK. 
 
 Run the command with `-h`flag to see the instructions:
@@ -53,12 +57,13 @@ Run the command with `-h`flag to see the instructions:
 > ./.build/release/QuestionGenerator -h
 OVERVIEW: A utility to generate both number conversion and basic math questions for Moodle quizzes.
 
-USAGE: question-generator <output-file> [<number-of-questions>] [<language>] [--verbose]
+USAGE: QuestionGenerator <output-file> [<number-of-questions>] [<language>] [<output>] [--verbose]
 
 ARGUMENTS:
   <output-file>           Output file name.
-  <number-of-questions>   Number of questions to generate for each question type (default: 10)
-  <language>              Language to generate, either fi or en. (default: fi)
+  <number-of-questions>   Number of questions (10 by default) to generate for each question type (default: 10)
+  <language>              Language to generate, either fi (default) or en. (default: fi)
+  <output>                Output format, either moodle or html (default). (default: html)
 
 OPTIONS:
   --verbose               Include extra information in the console output.

@@ -1,6 +1,6 @@
 //
 //  AddQuestions.swift
-//  
+//
 //
 //  Created by Antti Juustila on 15.9.2022.
 //
@@ -15,18 +15,20 @@ class AddQuestion: Question {
 	/// The answer to the question.
 	let answer: String
 	/// Hints or instructions on how to answer the question (Finnish).
-	let hint: String = """
-  <p>Käsittele arvoja etumerkittöminä (unsigned) kahdeksan bitin tavuina.</p>
-  """
+	let hints: [String] = ["Käsittele arvoja etumerkittöminä (unsigned) kahdeksan bitin tavuina."]
 	/// Hints or instructions on how to answer the question (English).
-	let hintEn: String = """
-  <p>Consider the values to be unsigned eight bits.</p>
-  """
-
+	let hintsEn: [String] = ["Consider the values to be unsigned eight bits."]
+	
 	/// Title of the question, not visible to students in Moodle, only to teachers.
 	var title: String {
 		get {
-			"Suorita laskutehtävä (calculate numbers) \(UInt.random(in: 10000...50000))"
+			"Suorita laskutehtävä (id: \(UInt.random(in: 10000...50000)))"
+		}
+	}
+
+	var titleEn: String {
+		get {
+			"calculate numbers (id: \(UInt.random(in: 10000...50000)))"
 		}
 	}
 
@@ -34,10 +36,10 @@ class AddQuestion: Question {
 		self.question = question
 		self.answer = answer
 	}
-
+	
 	/// The range of values to use when generating the question.
 	static let range: ClosedRange = UInt8.min...UInt8.max/2 - 1
-
+	
 	/// Generates one random question.
 	/// - Parameter language: The language to use in generating the question.
 	/// - Returns: Returns a new question object.
@@ -59,14 +61,14 @@ class AddQuestion: Question {
 		let valueOfBAsString = numberB.toString(using: radixOfB)
 		var question: String
 		if language == "fi" {
-			question = String(format: "<p>Anna seuraavan laskuoperaation tulos desimaalinumerona: \(valueOfAAsString) + \(valueOfBAsString)</p>")
+			question = String(format: "Anna seuraavan laskuoperaation tulos desimaalinumerona: \(valueOfAAsString) + \(valueOfBAsString)")
 		} else if language == "en" {
-			question = String(format: "<p>What is the result of the calculation as decimal number: \(valueOfAAsString) + \(valueOfBAsString)</p>")
+			question = String(format: "What is the result of the calculation as decimal number: \(valueOfAAsString) + \(valueOfBAsString)")
 		} else {
 			question = "ERROR"
 		}
 		let answer = (numberA + numberB).toString(using: .dec)
 		return AddQuestion(question: question, answer: answer)
 	}
-
+	
 }
