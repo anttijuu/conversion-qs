@@ -48,7 +48,7 @@ Or run the tool from command line, with suitable argument values, e.g.:
 
 First argument is required, the rest being optional with default values:
 
-1. The output XML file name. If the file exists, it is overwritten.
+1. The output file name. If the file exists, it is overwritten.
 2. Number of each question type to generate. Value 20 generates 20 conversion and 20 addition questions.
 3. Language of the questions, "fi" for Finnish, "en" for English.
 4. Format of the output, either "html" or "moodle" for Moodle XML format.
