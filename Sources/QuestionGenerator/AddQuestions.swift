@@ -47,16 +47,19 @@ class AddQuestion: Question {
 		}
 		let radixOfA = Radix.allCases.randomElement()!
 		var radixOfB = Radix.allCases.randomElement()!
-		while radixOfA == radixOfB {
+		while radixOfA == .dec && radixOfB == .dec {
 			radixOfB = Radix.allCases.randomElement()!
 		}
 		let valueOfAAsString = numberA.toString(using: radixOfA)
 		let valueOfBAsString = numberB.toString(using: radixOfB)
 		var question: String
+		// Make sure the toString is the correct number using Int conversion
+		let answer = (numberA + numberB).toString(using: .dec)
+		precondition(Int(answer) == Int(numberA+numberB))
+		
 		switch language {
 		case .fi:
 			question = String(format: "Anna seuraavan laskuoperaation tulos kymmenlukujärjestelmän numerona: \(valueOfAAsString) + \(valueOfBAsString)")
-			let answer = (numberA + numberB).toString(using: .dec)
 			return AddQuestion(
 				title: "Suorita laskutehtävä (id: \(UInt.random(in: 10000...50000)))",
 				question: question,
@@ -68,7 +71,6 @@ class AddQuestion: Question {
 			)
 		case .en:
 			question = String(format: "What is the result of this calculation as a decimal system number: \(valueOfAAsString) + \(valueOfBAsString)")
-			let answer = (numberA + numberB).toString(using: .dec)
 			return AddQuestion(
 				title: "Solve the calculation (id: \(UInt.random(in: 10000...50000)))",
 				question: question,

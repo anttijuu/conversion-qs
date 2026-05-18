@@ -13,10 +13,15 @@ struct UnsignedTestNumber {
 	let answer: String
 }
 
+/// Tests the UInt8.toString extension
 final class ConversionQsTests: XCTestCase {
 
 	func testConversions() throws {
 		var testArray = [SignedTestNumber]()
+		testArray.append(SignedTestNumber(value: 0, hexValue: "0x00", binValue: "0b00000000"))
+		testArray.append(SignedTestNumber(value: -1, hexValue: "0xFF", binValue: "0b11111111"))
+		testArray.append(SignedTestNumber(value: -16, hexValue: "0xF0", binValue: "0b11110000"))
+		testArray.append(SignedTestNumber(value: 15, hexValue: "0x0F", binValue: "0b00001111"))
 		testArray.append(SignedTestNumber(value: 1, hexValue: "0x01", binValue: "0b00000001"))
 		testArray.append(SignedTestNumber(value: 10, hexValue: "0x0A", binValue: "0b00001010"))
 		testArray.append(SignedTestNumber(value: 42, hexValue: "0x2A", binValue: "0b00101010"))
