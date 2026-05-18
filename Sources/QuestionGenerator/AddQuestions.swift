@@ -10,37 +10,24 @@ import Foundation
 
 /// Add question type generates simple arithmetic add questions using unsigned byte values.
 class AddQuestion: Question {
+	/// Title of the question.
+	let title: String
 	/// The generated question text.
 	let question: String
 	/// The answer to the question.
 	let answer: String
-	/// Hints or instructions on how to answer the question (Finnish).
-	let hints: [String] = [
-		"Käsittele arvoja etumerkittöminä (unsigned) kahdeksan bitin tavuina.",
-		"Anna vastauksena vain numeroita, ei kirjainmerkkejä, välimerkkejä, välilyöntejä tai muuta"
-	]
-	/// Hints or instructions on how to answer the question (English).
-	let hintsEn: [String] = [
-		"Consider the values to be unsigned eight bits.",
-		"In your answer use only numbers, no characters, punctuations, spaces or other symbols"
-	]
+	/// Hints or instructions on how to answer the question.
+	let hints: [String]
 	
-	/// Title of the question, not visible to students in Moodle, only to teachers.
-	var title: String {
-		get {
-			"Suorita laskutehtävä (id: \(UInt.random(in: 10000...50000)))"
-		}
-	}
-	
-	var titleEn: String {
-		get {
-			"Calculate the numbers (id: \(UInt.random(in: 10000...50000)))"
-		}
-	}
-	
-	init(question: String, answer: String) {
+	init(title: String,
+		  question: String,
+		  answer: String,
+		  hints: [String]
+	) {
+		self.title = title
 		self.question = question
 		self.answer = answer
+		self.hints = hints
 	}
 	
 	/// The range of values to use when generating the question.
@@ -69,11 +56,28 @@ class AddQuestion: Question {
 		switch language {
 		case .fi:
 			question = String(format: "Anna seuraavan laskuoperaation tulos kymmenlukujärjestelmän numerona: \(valueOfAAsString) + \(valueOfBAsString)")
+			let answer = (numberA + numberB).toString(using: .dec)
+			return AddQuestion(
+				title: "Suorita laskutehtävä (id: \(UInt.random(in: 10000...50000)))",
+				question: question,
+				answer: answer,
+				hints: [
+					"Käsittele arvoja etumerkittöminä (unsigned) kahdeksan bitin tavuina ja kokonaislukuina.",
+					"Anna vastauksena vain numeroita, ei kirjainmerkkejä, välimerkkejä, välilyöntejä tai muuta"
+				]
+			)
 		case .en:
 			question = String(format: "What is the result of this calculation as a decimal system number: \(valueOfAAsString) + \(valueOfBAsString)")
+			let answer = (numberA + numberB).toString(using: .dec)
+			return AddQuestion(
+				title: "Solve the calculation (id: \(UInt.random(in: 10000...50000)))",
+				question: question,
+				answer: answer, hints: [
+					"Consider the values to be unsigned eight bits and integers.",
+					"In your answer use only digits, no characters, punctuations, spaces or other symbols"
+				]
+			)
 		}
-		let answer = (numberA + numberB).toString(using: .dec)
-		return AddQuestion(question: question, answer: answer)
 	}
 	
 }

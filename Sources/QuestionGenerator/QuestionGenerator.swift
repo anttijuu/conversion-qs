@@ -54,18 +54,12 @@ extension QuestionGenerator {
 		if verbose {
 			print("---Generated questions below---")
 			for question in questions {
-				if language == "fi" {
-					print("Aihe: \(question.title)")
-					print("Kysymys: \(question.question)")
-					print("Ohjeet:\n - \(question.hints.joined(separator: "\n - "))")
-					print("!! Oikea vastaus: \(question.answer)")
-					
-				} else if language == "en" {
-					print("Subject: \(question.titleEn)")
-					print("Question: \(question.question)")
-					print("Instructions:\n - \(question.hintsEn.joined(separator: "\n - "))")
-					print("!! Correct answer is: \(question.answer)")
+				print(question.title)
+				print(question.question)
+				for hint in question.hints {
+					print(" - \(hint)")
 				}
+				print("[!! A: \(question.answer)]")
 				print(" --- ")
 			}
 		}

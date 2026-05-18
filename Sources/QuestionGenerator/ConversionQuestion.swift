@@ -9,37 +9,24 @@ import Foundation
 
 /// A radix conversion question. Students are required to convert a number to a different radix.
 class ConversionQuestion: Question {
-	/// The question generated.
+	/// The title of the question.
+	let title: String
+	/// The question as generated.
 	let question: String
 	/// The correct answer to the question.
 	let answer: String
-	/// Finnish instructions or hints on how to answer the question.
-	var hints: [String] = [
-		"Käsittele arvoja etumerkillisinä (signed) kahdeksan bitin tavuina.",
-		"Käytä vain vastauksessa odotetun lukujärjestelmän numeroita, ei välilyöntejä tai muita välimerkkejä!"
-	]
-	/// English instructions or hints on how to answer the question.
-	var hintsEn: [String] = [
-		"Consider the values to be signed eight bit bytes.",
-		"Use only the digits of the requested radix, no spaces or other punctuations!"
-	]
-	
-	/// The title of the question. Visible only to Moodle teachers, not students.
-	var title: String {
-		get {
-			"Muunna lukujärjestelmien (radix) välillä (id: \(UInt.random(in: 10_000...1_000_000)))"
-		}
-	}
-	
-	var titleEn: String {
-		get {
-			"Convert between radixes (id: \(UInt.random(in: 10000...1_000_000)))"
-		}
-	}
-	
-	init(question: String, answer: String) {
+	/// Instructions or hints on how to answer the question.
+	let hints: [String]
+		
+	init(title: String,
+		  question: String,
+		  answer: String,
+		  hints: [String]
+	) {
+		self.title = title
 		self.question = question
 		self.answer = answer
+		self.hints = hints
 	}
 	
 	/// The range of values to use in generating the questions.
@@ -69,31 +56,49 @@ class ConversionQuestion: Question {
 		switch language {
 		case .fi:
 			let question = String(format: "Muunna arvo \(fromValueAsString) numerojärjestelmään: \(toRadix.asString(using: language)).")
-			let conversionQuestion = ConversionQuestion(question: question, answer: answer)
+			var hints = [
+				"Käsittele arvoja etumerkillisinä (signed) kahdeksan bitin tavuina ja kokonaislukuina.",
+				"Käytä vain vastauksessa odotetun lukujärjestelmän numeroita, ei välilyöntejä tai muita välimerkkejä!"
+			]
 			if toRadix != .dec {
-				conversionQuestion.hints.append(
+				hints.append(
 					"Jos vastauksen lukujärjestelmä ei ole desimaali, kirjoita vastaukseen pyydetyn lukujärjestelmän etuliite, esimerkiksi: 0x2C tai 0b00010110 (eli 0x tai 0b)."
 				)
 				if toRadix == .bin {
-					conversionQuestion.hints.append(
+					hints.append(
 						"Binääriarvoja syöttäessäsi, vastauksessa pitää olla kahdeksan bittiä eli lisää etunollat, esimerkiksi: 0b00010110."
 					)
 				}
 			}
+			let conversionQuestion = ConversionQuestion(
+				title: "Muunna lukujärjestelmien (radix) välillä (id: \(UInt.random(in: 10_000...1_000_000)))",
+				question: question,
+				answer: answer,
+				hints: hints
+			)
 			return conversionQuestion
 		case .en:
 			let question = String(format: "Convert the value \(fromValueAsString) to radix: \(toRadix.asString(using: language)).")
-			let conversionQuestion = ConversionQuestion(question: question, answer: answer)
+			var hints = [
+				"Treat the values as signed eight bit bytes and integers.",
+				"In your answer, use only digits from the expected numbering system (radix), no spaces nor other punctiation characters!"
+			]
 			if toRadix != .dec {
-				conversionQuestion.hintsEn.append(
+				hints.append(
 					"If the answer is not decimal, prefix the answer for the radix (0x, 0b) asked, e.g. 0x2C or 0b00010110."
 				)
 				if toRadix == .bin {
-					conversionQuestion.hintsEn.append(
+					hints.append(
 						"When entering binary values, the answer must include eight bits, so add the preceding zeroes, for example: 0b00010110."
 					)
 				}
 			}
+			let conversionQuestion = ConversionQuestion(
+				title: "Convert between radixes (id: \(UInt.random(in: 10000...1_000_000)))",
+				question: question,
+				answer: answer,
+				hints: hints
+			)
 			return conversionQuestion
 		}
 	}

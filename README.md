@@ -4,15 +4,21 @@ This command line tool generates random numbering system (radix) questions for q
 
 The questions are either simple radix conversion questions, for example:
 
-> Convert the value 107 to radix: hexadecimal.
-> Consider the values to be signed bytes, with eight bits.
-> Include in the answer the prefix for the radix (0x, 0b) asked, if it is not decimal, e.g. 0x2C or 0b00010110.
-> Otherwise, use only the digits of the requested numbering system, no spaces or other punctuations!
+```
+Convert between radixes (id: 902575)
+Convert the value 0b10101000 to radix: decimal.
+ - Treat the values as signed eight bit bytes and integers.
+ - In your answer, use only digits from the expected numbering system (radix), no spaces nor other punctiation characters!
+```
 
 Or simple arithmetic add operations:
 
-> What is the result of the calculation as decimal number: 32 + 0x29
-> Consider the values to be unsigned eight bits.
+```
+Solve the calculation (id: 26562)
+What is the result of this calculation as a decimal system number: 0x31 + 86
+ - Consider the values to be unsigned eight bits and integers.
+ - In your answer use only digits, no characters, punctuations, spaces or other symbols
+```
 
 Both question types use eight bit integer values. Add questions use only positive (unsigned) eight bit values.
 
@@ -46,7 +52,7 @@ Or run the tool from command line, with suitable argument values, e.g.:
 ./.build/release/QuestionGenerator test.html 20 fi html
 ```
 
-First argument is required, the rest being optional with default values:
+First argument is required, the others being optional with default values:
 
 1. The output file name. If the file exists, it is overwritten.
 2. Number of each question type to generate. Value 20 generates 20 conversion and 20 addition questions.
@@ -79,27 +85,24 @@ If you wish to get plain text output, use either moodle or html output format an
 ```console
 > .build/debug/QuestionGenerator test.html 1 en html --verbose
 ---Generated questions below---
- ---
-Subject: Convert between radixes (id: 37112)
-Question: Convert the value 72 to radix: hexadecimal.
-Instructions:
- - Consider the values to be signed eight bit bytes.
- - If the answer is not decimal, prefix the answer for the radix (0x, 0b) asked, e.g. 0x2C or 0b00010110.
- - When entering binary values, the answer must include eight bits, so add the preceding zeroes, for example: 0b00010110.
- - Otherwise, use only the digits of the requested radix, no spaces or other punctuations!
-!! Correct answer is: 0x48
- ---
-Subject: Calculate the numbers (id: 39215)
-Question: What is the result of the calculation as a decimal system number: 19 + 0x09
-Instructions:
- - Consider the values to be unsigned eight bits.
- - In your answer use only numbers, no characteres, punctiations, spaces or other symbols
-!! Correct answer is: 28
--- Done -- 
+Convert between radixes (id: 902575)
+Convert the value 0b10101000 to radix: decimal.
+ - Treat the values as signed eight bit bytes and integers.
+ - In your answer, use only digits from the expected numbering system (radix), no spaces nor other punctiation characters!
+[!! A: -88]
+ --- 
+Solve the calculation (id: 26562)
+What is the result of this calculation as a decimal system number: 0x31 + 86
+ - Consider the values to be unsigned eight bits and integers.
+ - In your answer use only digits, no characters, punctuations, spaces or other symbols
+[!! A: 135]
+ --- 
+***** Done *****
 ```
-Then you can copy the question text from the console (or redirect it into a file or clipboard). 
 
-In all output formats, take care *not* to include the correct answer in the question text for the students...
+Then you can copy the question text from the console (or redirect it into a file or the clipboard). 
+
+In all output formats, take care *not* to include the correct answer in the question text for the students. The answer line is shown above starting with `[!! A:`. See the html version in browser and note that the aswer is shown in fixed with string style (within `<pre></pre>` element).
 
 
 ## Contributing

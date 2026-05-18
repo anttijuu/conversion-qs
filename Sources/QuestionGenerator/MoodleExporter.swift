@@ -35,25 +35,13 @@ enum MoodleExporter {
 				let nameNode = XMLElement(name: "name")
 				
 				// Add the actual question text visible to student as plain text
-				let title = switch language {
-				case .fi: question.title
-				case .en: question.titleEn
-				}
-				
-				nameNode.addChild(XMLElement(name: "text", stringValue: title))
+				nameNode.addChild(XMLElement(name: "text", stringValue: question.title))
 				questionElement.addChild(nameNode)
 				let questionText = XMLElement(name: "questiontext")
 				questionText.addAttribute(XMLNode.attribute(withName: "format", stringValue: "html") as! XMLNode)
 
-				let hints = switch language {
-				case .fi:
-					question.hints
-				case .en:
-					question.hintsEn
-				}
-				
 				var wholeQuestion = "<p>\(question.question)</p><ul>\n"
-				for hint in hints {
+				for hint in question.hints {
 					wholeQuestion.append("<li>\(hint)</li>\n")
 				}
 				wholeQuestion.append("</ul></p>")

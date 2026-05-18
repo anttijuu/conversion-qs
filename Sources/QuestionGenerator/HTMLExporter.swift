@@ -31,26 +31,13 @@ enum HTMLExporter {
 			
 			for question in questions {
 				
-				let title = switch language {
-				case .fi:
-					question.title
-				case .en:
-					question.titleEn
-				}
-								
-				let questionTitleElement = XMLElement(name: "h3", stringValue: title)
+				let questionTitleElement = XMLElement(name: "h3", stringValue: question.title)
 				body.addChild(questionTitleElement)
 				let questionElement = XMLElement(name: "p", stringValue: question.question)
 				body.addChild(questionElement)
 				
-				let hints = switch language {
-				case .fi:
-					question.hints
-				case .en:
-					question.hintsEn
-				}
 				let hintsNode = XMLElement(name: "ul")
-				for hint in hints {
+				for hint in question.hints {
 					let hintElement = XMLElement(name: "li", stringValue: hint)
 					hintsNode.addChild(hintElement)
 				}
