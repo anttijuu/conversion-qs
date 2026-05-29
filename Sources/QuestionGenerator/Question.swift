@@ -12,6 +12,5 @@ protocol Question {
 	var title: String { get }
 	var question: String { get }
 	var answer: String { get }
-	var hint: String { get }
-	var hintEn: String { get }
+	var hints: [String] { get }
 }

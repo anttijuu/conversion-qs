@@ -17,7 +17,7 @@ enum MoodleExporter {
 	///   - questions: An array of questions.
 	///   - file: The file name to store the questions.
 	///   - language: One of the supported languages, currently "fi" or "en".
-	static func write(questions: [Question], to file: String, using language: String) {
+	static func write(questions: [Question], to file: String, using language: Language) {
 		do {
 			let fileURL = URL(fileURLWithPath: file)
 			// File must exist before using file handle, so write an empty string to the file.
@@ -33,15 +33,18 @@ enum MoodleExporter {
 				questionElement.addAttribute(XMLNode.attribute(withName: "type", stringValue: "shortanswer") as! XMLNode)
 				// Add question name, not visible to student
 				let nameNode = XMLElement(name: "name")
+				
 				// Add the actual question text visible to student as plain text
 				nameNode.addChild(XMLElement(name: "text", stringValue: question.title))
 				questionElement.addChild(nameNode)
 				let questionText = XMLElement(name: "questiontext")
 				questionText.addAttribute(XMLNode.attribute(withName: "format", stringValue: "html") as! XMLNode)
 
-				let hint = language == "fi" ? question.hint : question.hintEn
-				let wholeQuestion = "\(question.question) \(hint)"
-
+				var wholeQuestion = "<p>\(question.question)</p><ul>\n"
+				for hint in question.hints {
+					wholeQuestion.append("<li>\(hint)</li>\n")
+				}
+				wholeQuestion.append("</ul></p>")
 				let element = XMLElement(name: "text", stringValue: wholeQuestion)
 				// Trying to get the HTML formatted question inside a CDATA element so that tags would
 				// not be escaped, but could not get this to work.
