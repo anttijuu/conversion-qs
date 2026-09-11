@@ -30,6 +30,8 @@ class AddQuestion: Question {
 		self.hints = hints
 	}
 	
+	#warning("When type is hex, make sure value is > 0")
+	
 	/// The range of values to use when generating the question.
 	static let range: ClosedRange = UInt8.min...UInt8.max/2 - 1
 	

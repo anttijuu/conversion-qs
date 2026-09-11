@@ -29,6 +29,8 @@ class ConversionQuestion: Question {
 		self.hints = hints
 	}
 	
+	#warning("When type is hex, make sure value is > 0")
+	
 	/// The range of values to use in generating the questions.
 	static let range: ClosedRange = Int8.min+1...Int8.max-1
 	
