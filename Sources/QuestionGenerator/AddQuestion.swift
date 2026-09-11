@@ -29,9 +29,7 @@ class AddQuestion: Question {
 		self.answer = answer
 		self.hints = hints
 	}
-	
-	#warning("When type is hex, make sure value is > 0")
-	
+		
 	/// The range of values to use when generating the question.
 	static let range: ClosedRange = UInt8.min...UInt8.max/2 - 1
 	
@@ -63,7 +61,7 @@ class AddQuestion: Question {
 		case .fi:
 			question = String(format: "Anna seuraavan laskuoperaation tulos kymmenlukujärjestelmän numerona: \(valueOfAAsString) + \(valueOfBAsString)")
 			return AddQuestion(
-				title: "Suorita laskutehtävä (id: \(UInt.random(in: 10000...50000)))",
+				title: "Suorita laskutehtävä.",
 				question: question,
 				answer: answer,
 				hints: [
@@ -74,7 +72,7 @@ class AddQuestion: Question {
 		case .en:
 			question = String(format: "What is the result of this calculation as a decimal system number: \(valueOfAAsString) + \(valueOfBAsString)")
 			return AddQuestion(
-				title: "Solve the calculation (id: \(UInt.random(in: 10000...50000)))",
+				title: "Solve the calculation.",
 				question: question,
 				answer: answer, hints: [
 					"Consider the values to be unsigned eight bits and integers.",

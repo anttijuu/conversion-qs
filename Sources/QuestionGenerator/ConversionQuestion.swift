@@ -29,8 +29,6 @@ class ConversionQuestion: Question {
 		self.hints = hints
 	}
 	
-	#warning("When type is hex, make sure value is > 0")
-	
 	/// The range of values to use in generating the questions.
 	static let range: ClosedRange = Int8.min+1...Int8.max-1
 	
@@ -47,7 +45,7 @@ class ConversionQuestion: Question {
 		while fromRadix == toRadix {
 			toRadix = Radix.allCases.randomElement()!
 		}
-		if fromRadix == .dec && number < 0 {
+        if (fromRadix == .dec || fromRadix == .hex) && number < 0 {
 			number = abs(number)
 		}
 		
@@ -73,7 +71,7 @@ class ConversionQuestion: Question {
 				}
 			}
 			let conversionQuestion = ConversionQuestion(
-				title: "Muunna lukujärjestelmien (radix) välillä (id: \(UInt.random(in: 10_000...1_000_000)))",
+				title: "Muunna lukujärjestelmien (radix) välillä.",
 				question: question,
 				answer: answer,
 				hints: hints
@@ -96,7 +94,7 @@ class ConversionQuestion: Question {
 				}
 			}
 			let conversionQuestion = ConversionQuestion(
-				title: "Convert between radixes (id: \(UInt.random(in: 10000...1_000_000)))",
+				title: "Convert between radixes.",
 				question: question,
 				answer: answer,
 				hints: hints
