@@ -37,20 +37,22 @@ enum MoodleExporter {
 				// Add the actual question text visible to student as plain text
 				nameNode.addChild(XMLElement(name: "text", stringValue: question.title))
 				questionElement.addChild(nameNode)
-				let questionText = XMLElement(name: "questiontext")
+				
+                let questionText = XMLElement(name: "questiontext")
 				questionText.addAttribute(XMLNode.attribute(withName: "format", stringValue: "html") as! XMLNode)
-
-				var wholeQuestion = "<p>\(question.question)</p><ul>\n"
+                
+				var wholeQuestion = "<![CDATA[<p>\(question.question)</p><ul>\n"
 				for hint in question.hints {
 					wholeQuestion.append("<li>\(hint)</li>\n")
 				}
 				wholeQuestion.append("</ul></p>")
-				let element = XMLElement(name: "text", stringValue: wholeQuestion)
+                                
+				let element = XMLElement(name: "text", stringValue: "")
+                element.setStringValue(wholeQuestion, resolvingEntities: false)
 				// Trying to get the HTML formatted question inside a CDATA element so that tags would
 				// not be escaped, but could not get this to work.
-				//	let element = XMLElement(kind: .element, options: [.nodeIsCDATA, .nodeNeverEscapeContents])
-				//	element.name = "text"
-				//	element.setStringValue(wholeQuestion, resolvingEntities: false)
+                
+                // element.setStringValue(wholeQuestion, resolvingEntities: false)
 				questionText.addChild(element)
 				questionElement.addChild(questionText)
 

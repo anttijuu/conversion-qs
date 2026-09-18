@@ -65,7 +65,7 @@ class AddQuestion: Question {
 				question: question,
 				answer: answer,
 				hints: [
-					"Käsittele arvoja etumerkittöminä (unsigned) kahdeksan bitin tavuina ja kokonaislukuina.",
+					"Käsittele arvoja etumerkittöminä (unsigned) kahdeksan bitin sanoina (word) ja kokonaislukuina.",
 					"Anna vastauksena vain numeroita, ei kirjainmerkkejä, välimerkkejä, välilyöntejä tai muuta"
 				]
 			)
@@ -75,7 +75,7 @@ class AddQuestion: Question {
 				title: "Solve the calculation.",
 				question: question,
 				answer: answer, hints: [
-					"Consider the values to be unsigned eight bits and integers.",
+					"Consider the values to be unsigned eight bit words and integers.",
 					"In your answer use only digits, no characters, punctuations, spaces or other symbols"
 				]
 			)

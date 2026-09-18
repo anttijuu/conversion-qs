@@ -57,7 +57,7 @@ class ConversionQuestion: Question {
 		case .fi:
 			let question = String(format: "Muunna arvo \(fromValueAsString) numerojärjestelmään: \(toRadix.asString(using: language)).")
 			var hints = [
-				"Käsittele arvoja etumerkillisinä (signed) kahdeksan bitin tavuina ja kokonaislukuina.",
+				"Käsittele arvoja etumerkillisinä (signed) kahdeksan bitin sanoina (word) ja kokonaislukuina.",
 				"Käytä vain vastauksessa odotetun lukujärjestelmän numeroita, ei välilyöntejä tai muita välimerkkejä!"
 			]
 			if toRadix != .dec {
@@ -80,7 +80,7 @@ class ConversionQuestion: Question {
 		case .en:
 			let question = String(format: "Convert the value \(fromValueAsString) to radix: \(toRadix.asString(using: language)).")
 			var hints = [
-				"Treat the values as signed eight bit bytes and integers.",
+				"Treat the values as signed eight bit words and integers.",
 				"In your answer, use only digits from the expected numbering system (radix), no spaces nor other punctiation characters!"
 			]
 			if toRadix != .dec {
